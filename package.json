@@ -1,0 +1,26 @@
+{
+  "name": "tm-legacy",
+  "version": "0.0.1",
+  "description": "Get, save and update backup settings.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RomanBurunkov/tm-legacy.git"
+  },
+  "keywords": [
+    "backup",
+    "settings"
+  ],
+  "author": "Roman Burunkov <romon2002@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RomanBurunkov/tm-legacy/issues"
+  },
+  "homepage": "https://github.com/RomanBurunkov/tm-legacy#readme",
+  "dependencies": {
+    "tm-is": "^0.0.2"
+  }
+}
