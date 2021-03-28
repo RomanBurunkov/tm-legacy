@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint --ignore-path .gitignore lib/** index.js",
     "lint:fix": "eslint --fix --ignore-path .gitignore lib/** index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,8 @@
   "devDependencies": {
     "eslint": "^7.23.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1"
+    "eslint-plugin-import": "^2.22.1",
+    "jest": "^26.6.3"
   },
   "eslintConfig": {
     "env": {
@@ -46,5 +48,14 @@
     "rules": {
       "import/prefer-default-export": "off"
     }
+  },
+  "jest": {
+    "verbose": true,
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "testRegex": ".spec.js$",
+    "coverageDirectory": "./coverage"
   }
 }
