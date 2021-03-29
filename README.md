@@ -21,3 +21,6 @@ npm i tm-legacy
 ### Methods
 
   - `validate` Checks whether backup settings is available.
+  - `load`
+  - `save`
+  - `update`

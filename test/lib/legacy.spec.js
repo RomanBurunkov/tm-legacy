@@ -34,23 +34,47 @@ describe('Test TMLegacy class', () => {
     expect(TMLegacy).toBeDefined();
   });
 
-  test('TMLegacy.validate should return false if file does not exist', async () => {
-    await deleteTestLegacy();
-    const valid = await legacy.validate();
-    expect(valid).toBe(false);
+  describe('Test TMLegacy.validate method', () => {
+    test('TMLegacy.validate should return false if file does not exist', async () => {
+      await deleteTestLegacy();
+      const valid = await legacy.validate();
+      expect(valid).toBe(false);
+    });
+  
+    test('TMLegacy.validate should return false if file does not contains json', async () => {
+      await fs.promises.writeFile(testLegacyPath(), 'Some data');
+      const valid = await legacy.validate();
+      await deleteTestLegacy();
+      expect(valid).toBe(false);
+    });
+  
+    test('TMLegacy.validate should return true if file exist and contains json', async () => {
+      await fs.promises.writeFile(testLegacyPath(), JSON.stringify(mockLegacy()));
+      const valid = await legacy.validate();
+      await deleteTestLegacy();
+      expect(valid).toBe(true);
+    });
   });
 
-  test('TMLegacy.validate should return false if file does not contains json', async () => {
-    await fs.promises.writeFile(testLegacyPath(), 'Some data');
-    const valid = await legacy.validate();
-    await deleteTestLegacy();
-    expect(valid).toBe(false);
-  });
+  describe('Test TMLegacy.updateData method', () => {
+    test('TMLegacy.updateData should set data on first run.', () => {
+      const settings = mockLegacy();
+      const updates = legacy.updateData(settings);
+      expect(updates).toBe(Object.keys(settings).length);
+      expect(legacy.data).toEqual(mockLegacy());
+    });
 
-  test('TMLegacy.validate should return true if file exist and contains json', async () => {
-    await fs.promises.writeFile(testLegacyPath(), JSON.stringify(mockLegacy()));
-    const valid = await legacy.validate();
-    await deleteTestLegacy();
-    expect(valid).toBe(true);
+    test('TMLegacy.updateData should return false if there were no changes.', () => {
+      const settings = mockLegacy();
+      const updates = legacy.updateData(settings);
+      expect(updates).toBe(false);
+    });
+
+    test('TMLegacy.updateData should return amount of changed options.', () => {
+      const settings = mockLegacy();
+      settings[keys[0]] = Date.now();
+      const updates = legacy.updateData(settings);
+      expect(updates).toBe(1);
+    });
   });
 });
