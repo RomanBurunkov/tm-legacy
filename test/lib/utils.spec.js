@@ -5,6 +5,7 @@ const utils = require('../../lib/utils');
 const { isFunc } = require('tm-is');
 
 const mockFile = path.join(os.tmpdir(), 'legacy.test.json');
+const textFile = path.join(__dirname, '../', 'test.txt');
 const mockObj = { a: 1, b: 2, c: 'test' };
 
 describe('Test utils functions defined', () => {
@@ -28,7 +29,12 @@ describe('Test saveJson', () => {
 });
 
 describe('Test readJson', () => {
-  test('saveJson should get an object from a file', async () => {
+  test('readJson should return false if failed to parse data from file', async () => {
+    const data = await utils.readJson(textFile);
+    expect(data).toBe(false);
+  });
+
+  test('readJson should get an object from a file', async () => {
     await utils.saveJson(mockFile, mockObj);
     const data = await utils.readJson(mockFile);
     fs.promises.unlink(mockFile);
