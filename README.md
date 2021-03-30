@@ -25,3 +25,5 @@ npm i tm-legacy
   - `load`
   - `save`
   - `update`
+
+  Note: All the methods above are async and return promise.
