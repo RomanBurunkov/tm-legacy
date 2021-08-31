@@ -22,8 +22,8 @@ npm i tm-legacy
 ### Methods
 
   - `validate` Checks whether backup settings is available.
-  - `load`
-  - `save`
-  - `update`
+  - `load` Loads settings and store data in memory for further usage.
+  - `save` Saves settings into a file.
+  - `update` Updates settings.
 
-  Note: All the methods above are async and return promise.
+  Note: All the methods above are async(return promise).

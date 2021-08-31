@@ -1,6 +1,6 @@
 {
   "name": "tm-legacy",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Get, save and update backup settings.",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/RomanBurunkov/tm-legacy#readme",
   "dependencies": {
-    "tm-is": "^0.0.2"
+    "tm-is": "^0.1.0"
   },
   "devDependencies": {
     "eslint": "^7.23.0",
