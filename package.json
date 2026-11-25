@@ -5,6 +5,8 @@
   "main": "index.js",
   "files": ["index.js", "lib"],
   "scripts": {
+    "build:types": "tsc",
+    "prepack": "npm run build:types",
     "lint": "eslint --ignore-path .gitignore lib/** index.js",
     "lint:fix": "eslint --fix --ignore-path .gitignore lib/** index.js",
     "test": "jest",
