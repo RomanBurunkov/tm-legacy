@@ -10,37 +10,46 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
       - name: Install node modules
-        run: npm install
+        run: npm ci
       - name: Run ESLint
         run: npm run lint
+  build:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install node modules
+        run: npm ci
+      - name: Build types
+        run: npm run build:types
   test:
     needs: lint
     strategy:
       matrix:
-        node_versions: [10, 12, 14]
+        node_versions: [18, 20, 22, 24, 26]
       fail-fast: false
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node_versions }}
       - name: Install node modules
-        run: npm install
+        run: npm ci
       - name: Run Tests
         run: npm test
   coverage:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
       - name: Install node modules
-        run: npm install
+        run: npm ci
       - name: Run Tests with coverage
         run: npm run test:coverage
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}

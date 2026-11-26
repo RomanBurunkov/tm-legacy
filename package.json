@@ -1,9 +1,17 @@
 {
   "name": "tm-legacy",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Get, save and update backup settings.",
   "main": "index.js",
+  "files": [
+    "index.js",
+    "lib",
+    "dist/types"
+  ],
+  "types": "dist/types",
   "scripts": {
+    "build:types": "tsc",
+    "prepack": "npm run build:types",
     "lint": "eslint --ignore-path .gitignore lib/** index.js",
     "lint:fix": "eslint --fix --ignore-path .gitignore lib/** index.js",
     "test": "jest",
@@ -24,38 +32,13 @@
   },
   "homepage": "https://github.com/RomanBurunkov/tm-legacy#readme",
   "dependencies": {
-    "tm-is": "^0.1.0"
+    "tm-is": "^0.4.2"
   },
   "devDependencies": {
-    "eslint": "^7.23.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1",
-    "jest": "^26.6.3"
-  },
-  "eslintConfig": {
-    "env": {
-      "node": true,
-      "jest": true
-    },
-    "parserOptions": {
-      "ecmaFeatures": {
-        "legacyDecorators": true
-      }
-    },
-    "extends": [
-      "airbnb-base"
-    ],
-    "rules": {
-      "import/prefer-default-export": "off"
-    }
-  },
-  "jest": {
-    "verbose": true,
-    "moduleFileExtensions": [
-      "js",
-      "json"
-    ],
-    "testRegex": ".spec.js$",
-    "coverageDirectory": "./coverage"
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.32.0",
+    "jest": "^29.7.0",
+    "typescript": "^7.0.2"
   }
 }
