@@ -3,7 +3,12 @@
   "version": "0.1.0",
   "description": "Get, save and update backup settings.",
   "main": "index.js",
-  "files": ["index.js", "lib"],
+  "files": [
+    "index.js",
+    "lib",
+    "dist/types"
+  ],
+  "types": "dist/types",
   "scripts": {
     "build:types": "tsc",
     "prepack": "npm run build:types",
